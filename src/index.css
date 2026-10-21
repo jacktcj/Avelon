@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    @apply font-body text-gold-200 antialiased;
+    background-color: #050a1c;
+    background-image:
+      radial-gradient(ellipse at 50% -10%, rgba(34, 65, 140, 0.55), transparent 60%),
+      radial-gradient(ellipse at 50% 120%, rgba(193, 154, 62, 0.12), transparent 55%),
+      linear-gradient(180deg, #0a1433 0%, #050a1c 100%);
+    background-attachment: fixed;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  input { -webkit-user-select: text; user-select: text; }
+  h1, h2, h3 { @apply font-heading; }
+}
+
+@layer components {
+  .btn {
+    @apply relative inline-flex min-h-[3.5rem] w-full items-center justify-center gap-2 rounded-2xl px-6
+      font-heading text-lg font-semibold tracking-wider transition duration-150
+      active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100
+      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-300;
+  }
+  .btn-gold {
+    @apply btn text-royal-950;
+    background: linear-gradient(180deg, #f6e7b8 0%, #d9b65c 45%, #a8822f 100%);
+    box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 -3px 0 rgba(0,0,0,.25) inset, 0 8px 22px -8px rgba(217,182,92,.6);
+  }
+  .btn-ghost {
+    @apply btn border border-gold-500/50 bg-royal-900/60 text-gold-200 backdrop-blur;
+    box-shadow: 0 1px 0 rgba(246,231,184,.08) inset;
+  }
+  .btn-good {
+    @apply btn text-white;
+    background: linear-gradient(180deg, #4fb3f0 0%, #1a6aa8 100%);
+    box-shadow: 0 -3px 0 rgba(0,0,0,.25) inset, 0 10px 24px -10px rgba(79,179,240,.8);
+  }
+  .btn-evil {
+    @apply btn text-white;
+    background: linear-gradient(180deg, #f05a5a 0%, #a51d29 100%);
+    box-shadow: 0 -3px 0 rgba(0,0,0,.25) inset, 0 10px 24px -10px rgba(240,90,90,.8);
+  }
+  .panel {
+    @apply rounded-3xl border border-gold-500/25 bg-royal-900/70 p-5 backdrop-blur;
+    box-shadow: 0 1px 0 rgba(246,231,184,.06) inset, 0 20px 40px -20px rgba(0,0,0,.8);
+  }
+  .gold-text {
+    background: linear-gradient(180deg, #fbf1d0 0%, #e2c374 55%, #a8822f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .label { @apply font-heading text-xs uppercase tracking-[0.25em] text-gold-400/80; }
+}
+
+.safe-pad {
+  padding-top: max(env(safe-area-inset-top), 1rem);
+  padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
