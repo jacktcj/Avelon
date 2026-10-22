@@ -4,6 +4,7 @@ import { countResults, currentMission } from '../game/engine';
 import { shuffle } from '../game/random';
 import { Avatar, CrownIcon, Handover, Progress, Screen } from '../components/ui';
 import { useI18n } from '../i18n';
+import { CharacterLookup } from './RevealScreens';
 
 type Dispatch = (a: Action) => void;
 
@@ -107,14 +108,21 @@ function LeaderBanner({ state, extra }: { state: GameState; extra?: ReactNode })
 export function DashboardScreen({ state, dispatch, menu }: { state: GameState; dispatch: Dispatch; menu: ReactNode }) {
   const { t } = useI18n();
   const m = currentMission(state);
+  const [lookup, setLookup] = useState(false);
+  if (lookup) return <CharacterLookup state={state} onClose={() => setLookup(false)} />;
   return (
     <Screen
       stage={t('board.stage', { n: state.missionIndex + 1 })}
       menu={menu}
       footer={
-        <button className="btn-gold" onClick={() => dispatch({ type: 'OPEN_TEAM_SELECTION' })}>
-          {t('board.chooseTeam', { n: state.missionIndex + 1 })}
-        </button>
+        <>
+          <button className="btn-gold" onClick={() => dispatch({ type: 'OPEN_TEAM_SELECTION' })}>
+            {t('board.chooseTeam', { n: state.missionIndex + 1 })}
+          </button>
+          <button className="btn-ghost !min-h-[3rem] !text-base" onClick={() => setLookup(true)}>
+            {t('board.myCharacter')}
+          </button>
+        </>
       }
     >
       <h1 className="gold-text mb-3 text-center font-display text-3xl font-bold">{t('board.title')}</h1>

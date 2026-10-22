@@ -52,6 +52,27 @@ describe('App', () => {
     expect(screen.getByText('I Am Alex – View My Character')).toBeTruthy();
   });
 
+  it('lets a player look up their character again from the dashboard', () => {
+    let s = revealingGame();
+    for (let i = 0; i < NAMES.length; i++) {
+      if (i > 0) s = reduce(s, { type: 'OPEN_PRIVATE' });
+      s = reduce(s, { type: 'NEXT_REVEAL' });
+    }
+    s = reduce(s, { type: 'START_GAME' });
+    localStorage.setItem('avalon.game.v2', encode(s));
+    render(<App />);
+    fireEvent.click(screen.getByText(/Resume Game/));
+    fireEvent.click(screen.getByText('Forgot Your Character?'));
+    fireEvent.click(screen.getByText('Cindy'));
+    const roleName = translate('en', `role.${s.roles[2]}.name` as MsgKey);
+    expect(screen.queryByText(roleName)).toBeNull();
+    fireEvent.click(screen.getByText('I Am Cindy – View My Character'));
+    expect(screen.getByText(roleName)).toBeTruthy();
+    fireEvent.click(screen.getByText('Hide Character & Return'));
+    expect(screen.queryByText(roleName)).toBeNull();
+    expect(screen.getByText('The Quest Board')).toBeTruthy();
+  });
+
   it('asks for confirmation before abandoning a game in progress', () => {
     localStorage.setItem('avalon.game.v2', encode(revealingGame()));
     render(<App />);

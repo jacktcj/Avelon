@@ -205,6 +205,13 @@ const en = {
   'board.team': 'Team',
   'board.twoFailsNote': 'This mission fails only with two or more Fail cards.',
   'board.table': 'Knights at the table · clockwise',
+  'board.myCharacter': 'Forgot Your Character?',
+
+  // Character lookup (mid-game)
+  'lookup.stage': 'Character Check',
+  'lookup.title': 'Who Are You?',
+  'lookup.subtitle': 'Tap your name to see your character again.',
+  'lookup.hide': 'Hide Character & Return',
 
   // Team selection
   'team.missionTeamStage': 'Mission {n} · Mission Team',
@@ -452,6 +459,12 @@ const zh: Record<MsgKey, Entry> = {
   'board.team': '人数',
   'board.twoFailsNote': '本轮任务需要至少两张失败牌才会失败。',
   'board.table': '圆桌骑士 · 顺时针',
+  'board.myCharacter': '忘记自己的身份？',
+
+  'lookup.stage': '身份查看',
+  'lookup.title': '你是谁？',
+  'lookup.subtitle': '点击你的名字，再次查看你的身份。',
+  'lookup.hide': '隐藏身份并返回',
 
   'team.missionTeamStage': '第 {n} 轮 · 任务队伍',
   'team.missionTeam': '任务队伍',

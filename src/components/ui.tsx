@@ -168,6 +168,7 @@ export function Handover({
   onReveal,
   progress,
   extra,
+  onBack,
 }: {
   stage: string;
   name: string;
@@ -176,11 +177,13 @@ export function Handover({
   onReveal: () => void;
   progress?: ReactNode;
   extra?: ReactNode;
+  onBack?: () => void;
 }) {
   const { t } = useI18n();
   return (
     <Screen
       stage={stage}
+      onBack={onBack}
       footer={
         <button className="btn-gold" onClick={onReveal}>
           {buttonLabel}
